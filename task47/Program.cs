@@ -1,4 +1,5 @@
-﻿/*Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+﻿/*Задача 47. Задайте двумерный массив размером m×n, 
+заполненный случайными вещественными числами.
 
 m = 3, n = 4.
 0,5 7 -2 -0,2
@@ -11,34 +12,29 @@ class Program
 {
     static void Main()
     {
-        int m = 3; // начальное количество строк
-        int n = 4; // начальное количество столбцов
-
-        Console.Clear();
-		Console.Write("Введите количество строк: ");
-        m = int.Parse(Console.ReadLine()!); // изменяем количество строк
+        Console.Write("Введите количество строк: ");
+        int m = int.Parse(Console.ReadLine()!);
 
         Console.Write("Введите количество столбцов: ");
-        n = int.Parse(Console.ReadLine()!); // изменяем количество столбцов
+        int n = int.Parse(Console.ReadLine()!);
 
-        double[,] randomArray = CreateRandomArray(m, n);
-        PrintArray(randomArray);
+        double[,] array = CreateRandomArray(m, n, -100, 100); // Здесь указывается диапазон значений в массиве
+        PrintArray(array);        
     }
 
-    static double[,] CreateRandomArray(int m, int n)
+    static double[,] CreateRandomArray(int m, int n, double minValue, double maxValue)
     {
         Random random = new Random();
         double[,] array = new double[m, n];
-        
+
         for (int i = 0; i < m; i++)
         {
             for (int j = 0; j < n; j++)
             {
-                double randomNumber = Math.Round((random.NextDouble() * 200) - 100, 1); // случайное число с одним знаком после запятой
-                array[i, j] = randomNumber;
+                array[i, j] = random.NextDouble() * (maxValue - minValue) + minValue; 
             }
         }
-        
+
         return array;
     }
 
@@ -51,10 +47,9 @@ class Program
         {
             for (int j = 0; j < n; j++)
             {
-                Console.Write(array[i, j].ToString("0.0") + "	");
+                Console.Write(array[i, j] + "   "); 
             }
             Console.WriteLine();
         }
     }
 }
-
