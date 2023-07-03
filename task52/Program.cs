@@ -26,18 +26,13 @@ class Program
 
         Console.Write("Введите максимальное значение: ");
         int maxValue = int.Parse(Console.ReadLine());
-
-        // Создание массива случайных целых чисел
         int[,] array = CreateRandomArray(m, n, minValue, maxValue);
 
-        // Вывод исходного массива
         Console.WriteLine("Исходный массив:	");
         PrintArray(array);
 
-        // Вычисление среднего арифметического в каждом столбце
         double[] columnAverages = CalculateColumnAverages(array);
 
-        // Вывод среднего арифметического в каждом столбце
         Console.WriteLine("Среднее арифметическое в каждом столбце: ");
         for (int j = 0; j < n; j++)
         {
